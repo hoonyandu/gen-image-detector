@@ -1,7 +1,7 @@
 import torch
 from transformers import AutoImageProcessor, SiglipForImageClassification
 
-from src.settings import ModelConfig
+from settings import ModelConfig
 
 config = ModelConfig()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
