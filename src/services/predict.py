@@ -2,6 +2,7 @@ import torch
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 def predict(processor, model, image):
     print("Preprocessing image...")
     # Use the processor to prepare the image for the model
@@ -25,4 +26,3 @@ def predict(processor, model, image):
     predicted_prob = probabilities[0, predicted_class_idx].item()
 
     return predicted_label, predicted_prob
-

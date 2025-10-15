@@ -6,6 +6,7 @@ from src.settings import ModelConfig
 config = ModelConfig()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+
 def load_processor():
     # Load Model and Processor
     try:
@@ -16,8 +17,9 @@ def load_processor():
     except Exception as e:
         print(f"Error loading processor: {e}")
         exit()
-    
+
     return processor
+
 
 def load_model():
     try:
@@ -29,5 +31,5 @@ def load_model():
     except Exception as e:
         print(f"Error loading model: {e}")
         exit()
-    
+
     return model
