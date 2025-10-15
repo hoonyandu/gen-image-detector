@@ -1,0 +1,12 @@
+services:
+  server:
+    container_name: gen-image-detector
+    image: gen-image-detector
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:7860"
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=7860
