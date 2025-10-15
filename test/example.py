@@ -25,7 +25,7 @@ except Exception as e:
 
 # Load and Preprocess the Image
 
-# IMAGE_PATH = r"/content/images.jpg" 
+# IMAGE_PATH = r"/content/images.jpg"
 IMAGE_PATH = r"image/image3.jpg"
 try:
     print(f"Loading image: {IMAGE_PATH}")
@@ -43,7 +43,7 @@ inputs = processor(images=image, return_tensors="pt").to(device)
 
 # Perform Inference
 print("Running inference...")
-with torch.no_grad(): # Disable gradient calculations for inference
+with torch.no_grad():  # Disable gradient calculations for inference
     outputs = model(**inputs)
     logits = outputs.logits
 
