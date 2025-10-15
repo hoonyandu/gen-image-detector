@@ -1,0 +1,2 @@
+SERVER_NAME=$1
+docker rmi $SERVER_NAME
