@@ -11,7 +11,9 @@ def load_processor():
     # Load Model and Processor
     try:
         print(f"Loading processor from: {config.MODEL_IDENTIFIER}")
-        processor = AutoImageProcessor.from_pretrained(config.MODEL_IDENTIFIER)
+        processor = AutoImageProcessor.from_pretrained(
+            config.MODEL_IDENTIFIER, use_fast=True
+        )
         print("Processor loaded successfully.")
 
     except Exception as e:
@@ -33,3 +35,17 @@ def load_model():
         exit()
 
     return model
+
+
+class ModelWrapper(torch.nn.Module):
+    # model wrapper for gradcam
+    def __init__(self, model):
+        super(ModelWrapper, self).__init__()
+        self.model = model
+
+    def forward(self, x):
+        outputs = self.model(x)
+        return outputs.logits
+
+    def get_image_size(self):
+        return self.model.config.image_size
