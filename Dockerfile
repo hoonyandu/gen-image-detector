@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 앱 복사
-COPY src .
+COPY src ./src/
 
 # Gradio 외부접속 세팅
 ENV GRADIO_SERVER_NAME=0.0.0.0
@@ -23,4 +23,4 @@ ENV GRADIO_SERVER_PORT=7860
 EXPOSE 7860
 
 # (선택) 헬스체크 기다림 없이 바로 실행
-CMD ["python", "app.py"]
+CMD ["python", "src/app.py"]

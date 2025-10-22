@@ -16,7 +16,7 @@ fi
 
 echo "Starting GEN IMAGE DETECTOR in $MODE mode..."
 
-# Common: DOcker cleanup
+# Common: Docker cleanup
 cd scripts/docker
 ./docker_clear.sh $SERVER_NAME
 cd ../..
