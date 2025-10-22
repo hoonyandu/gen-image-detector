@@ -19,9 +19,12 @@ def test_model(image):
     predicted_label, predicted_prob = predict(processor, model, image)
     return predicted_label, predicted_prob
 
+
 def test_model_with_gradcam(image):
     image = Image.fromarray(image).convert("RGB")
-    predicted_label, predicted_prob, visualization = predict_with_gradcam(processor, model, image)
+    predicted_label, predicted_prob, visualization = predict_with_gradcam(
+        processor, model, image
+    )
     return predicted_label, predicted_prob, visualization
 
 
