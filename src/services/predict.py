@@ -1,7 +1,7 @@
 import torch
 
-from domain.models import ModelWrapper, get_output_targets
-from domain.visualization import get_visualize_gradcam
+from src.domain.models import ModelWrapper, get_output_targets
+from src.domain.visualization import get_visualize_gradcam
 from src import config
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

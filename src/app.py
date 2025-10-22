@@ -6,8 +6,8 @@ from PIL import Image, ImageFilter
 
 sys.path.append(os.path.abspath("."))
 
-from domain.models import load_model, load_processor
-from services.predict import predict, predict_with_gradcam
+from src.domain.models import load_model, load_processor
+from src.services.predict import predict, predict_with_gradcam
 
 processor = load_processor()
 model = load_model()

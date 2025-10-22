@@ -1,3 +1,3 @@
-from settings import ModelConfig
+from src.settings import ModelConfig
 
 config = ModelConfig()
