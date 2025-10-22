@@ -1,14 +1,10 @@
-import os
-import sys
-
 import gradio as gr
 from PIL import Image, ImageFilter
-
-# os.path.abspath("..")
+import sys, os
 sys.path.append(os.path.abspath("."))
 
-from domain.models import load_model, load_processor
-from services.predict import predict
+from domain.models import load_processor, load_model
+from services.predict import predict, predict_with_gradcam
 
 processor = load_processor()
 model = load_model()
