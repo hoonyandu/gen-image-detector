@@ -1,9 +1,9 @@
 import torch
+from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 from transformers import AutoImageProcessor, SiglipForImageClassification
 
-from settings import ModelConfig
+from src import config
 
-config = ModelConfig()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
@@ -49,3 +49,7 @@ class ModelWrapper(torch.nn.Module):
 
     def get_image_size(self):
         return self.model.config.image_size
+
+
+def get_output_targets(predicted_class_idx):
+    return [ClassifierOutputTarget(predicted_class_idx)]

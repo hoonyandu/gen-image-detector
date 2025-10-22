@@ -32,7 +32,7 @@ def get_visualize_gradcam(
 ):
     # Construct the CAM object once, and then re-use it on many images.
     # Use custom reshape_transform for Siglip models
-    with EigenCAM(
+    with GradCAM(
         model=model,
         target_layers=target_layers,
         reshape_transform=siglip_reshape_transform,

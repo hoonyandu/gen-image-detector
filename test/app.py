@@ -4,7 +4,6 @@ import sys
 import gradio as gr
 from PIL import Image, ImageFilter
 
-# os.path.abspath("..")
 sys.path.append(os.path.abspath("."))
 
 from src.domain.models import load_model, load_processor

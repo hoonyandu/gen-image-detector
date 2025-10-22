@@ -1,8 +1,8 @@
 import torch
-from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
-from domain.models import ModelWrapper
-from domain.visualization import get_visualize_gradcam
+from src import config
+from src.domain.models import ModelWrapper, get_output_targets
+from src.domain.visualization import get_visualize_gradcam
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -23,7 +23,8 @@ def predict(processor, model, image):
     predicted_class_idx = logits.argmax(-1).item()
 
     # Use the model's config to map the ID back to the label string ('ai' or 'hum')
-    predicted_label = model.config.id2label[predicted_class_idx]
+    # predicted_label = model.config.id2label[predicted_class_idx]
+    predicted_label = config.MODEL_ID_2_LABELS[predicted_class_idx]
 
     # Optional: Get probabilities using softmax
     probabilities = torch.softmax(logits, dim=-1)
@@ -47,14 +48,18 @@ def predict_with_gradcam(processor, model, image):
     # Interpret the Results
     # Get the index of the highest logit score -> this is the predicted class ID
     predicted_class_idx = logits.argmax(-1).item()
-    predicted_label = model.config.id2label[predicted_class_idx]
+    # predicted_label = model.config.id2label[predicted_class_idx]
+    predicted_label = config.MODEL_ID_2_LABELS[predicted_class_idx]
 
     probabilities = torch.softmax(logits, dim=-1)
     predicted_prob = probabilities[0, predicted_class_idx].item()
 
     # visualize
     target_layers = [wrapped_model.model.vision_model.encoder.layers[-1].layer_norm1]
-    targets = [ClassifierOutputTarget(predicted_class_idx)]
+
+    # Ensure we're using the correct target class for Grad-CAM
+    targets = get_output_targets(predicted_class_idx)
+
     image_size = model.config.vision_config.image_size
 
     visualization = get_visualize_gradcam(
