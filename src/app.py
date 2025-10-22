@@ -3,11 +3,12 @@ import sys
 
 import gradio as gr
 from PIL import Image, ImageFilter
-import sys, os
+
+# os.path.abspath("..")
 sys.path.append(os.path.abspath("."))
 
-from domain.models import load_processor, load_model
-from services.predict import predict, predict_with_gradcam
+from domain.models import load_model, load_processor
+from services.predict import predict
 
 processor = load_processor()
 model = load_model()
