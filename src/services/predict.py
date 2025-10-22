@@ -1,8 +1,8 @@
 import torch
 
+from src import config
 from src.domain.models import ModelWrapper, get_output_targets
 from src.domain.visualization import get_visualize_gradcam
-from src import config
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -56,10 +56,10 @@ def predict_with_gradcam(processor, model, image):
 
     # visualize
     target_layers = [wrapped_model.model.vision_model.encoder.layers[-1].layer_norm1]
-    
+
     # Ensure we're using the correct target class for Grad-CAM
     targets = get_output_targets(predicted_class_idx)
-    
+
     image_size = model.config.vision_config.image_size
 
     visualization = get_visualize_gradcam(
