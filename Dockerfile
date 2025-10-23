@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 앱 복사
 COPY src ./src/
+COPY image ./image/
 
 # Gradio 외부접속 세팅
 ENV GRADIO_SERVER_NAME=0.0.0.0
