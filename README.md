@@ -13,7 +13,7 @@
     ├── image           # Examples 로 사용할 이미지
     │
     ├── scripts         # local docker 환경 구성을 위한 스크립트
-    │   └── docker      # docker # 컨테이너, 이미지 정리 스크립트
+    │   └── docker      # docker 컨테이너, 이미지 정리 스크립트
     │
     ├── src
     │   ├── domain      # 모델, 시각화 클래스
